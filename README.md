@@ -1,6 +1,9 @@
 🌱 **Python Learner | Cyber Security Enthusiast**
+
 👨‍💻 **Currently learning Python fundamentals** and exploring software development.
+
 📚 **Passionate about problem-solving, automation, and building useful tools**.
+
 🎯 **Goals**: Master Python, dive deeper into **Cyber Security** and **Ethical Hacking**, and contribute to **open-source projects**.
 💡 **Favorite quote**: "It's not about how much you know, it's about how much you can learn."
 
