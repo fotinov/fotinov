@@ -5,6 +5,7 @@
 📚 **Passionate about problem-solving, automation, and building useful tools**.
 
 🎯 **Goals**: Master Python, dive deeper into **Cyber Security** and **Ethical Hacking**, and contribute to **open-source projects**.
+
 💡 **Favorite quote**: "It's not about how much you know, it's about how much you can learn."
 
 📈 **Current Projects**: Developing a Python-based automation tool, exploring cybersecurity applications.
