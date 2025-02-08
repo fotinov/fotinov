@@ -9,7 +9,6 @@
  
 ![GitHub Profile Summary](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=fotinov&theme=radical)
 
- ![](./profile-3d-contrib/profile-night-rainbow.svg)
 
 🌱 **Python Learner** **|** ***Cyber Security Enthusiast***
 
@@ -19,17 +18,26 @@
 
 📩 **Always open to collaboration and learning!**
 <br><br>
+
 </div>  
 
 <div align="center"> 
 
 ![Python](https://img.shields.io/badge/Python-3776AB??style=for-the-badge&logo=python&logoColor=white) ![Kali Linux](https://img.shields.io/badge/Kali%20Linux-%23000000?.svg?style=for-the-badge&logo=kalilinux&logoColor=blue) ![Windows](https://img.shields.io/badge/Windows-1E2A47??style=for-the-badge&logo=windows&logoColor=FF0000) ![Cybersecurity](https://img.shields.io/badge/Cybersecurity-FF0000?.svg?style=for-the-badge&logo=Tor-Browser&logoColor=white)
-
+![](./profile-3d-contrib/profile-night-rainbow.svg)
 </div>
 
 <div align="center">
+ 
 
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=fotinov&theme=radical)
+<b>GitHub Stats</b>
+
+| &nbsp; | &nbsp; |
+|--------|--------|
+| ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=fotinov&theme=radical&hide_border=true&date_format=M%20j%5B%2C%20Y%5D) | ![Profile Stats](https://github-readme-stats.vercel.app/api?username=fotinov&show_icons=true&theme=radical&hide_border=true&count_private=true) |
+
+
+
 
 </div>
 
@@ -37,7 +45,7 @@
 
 <div align="center">
  
-  ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=fotinov&layout=compact&theme=radical)
+
   
  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Sanguin+IT&weight=100&size=15&letterSpacing=wide&pause=1000&color=FF007C&center=true&vCenter=true&width=450&lines=Learn.+Code.+Repeat" alt="Typing SVG" /></a>
  
