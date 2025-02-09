@@ -21,7 +21,6 @@ jobs:
           # Build the JSON payload using a heredoc.
           # IMPORTANT: The EOF marker must have no indentation.
           json=$(cat <<EOF
-{
   "embeds": [{
     "title": "New Commit in Repository",
     "description": "A new commit has been pushed to the **main** branch.",
