@@ -12,61 +12,65 @@ jobs:
     steps:
       - name: Send commit info to Discord
         run: |
-          curl -X POST -H "Content-Type: application/json" \
-          --data '{
-            "embeds": [{
-              "title": "New Commit in Repository",
-              "description": "A new commit has been pushed to the **main** branch.",
-              "color": 3447003,  # Blue color (you can change the color code)
-              "fields": [
-                {
-                  "name": "Commit SHA",
-                  "value": "${{ github.sha }}",
-                  "inline": true
-                },
-                {
-                  "name": "Commit Message",
-                  "value": "${{ github.event.head_commit.message }}",
-                  "inline": false
-                },
-                {
-                  "name": "Committer",
-                  "value": "${{ github.actor }}",
-                  "inline": true
-                },
-                {
-                  "name": "Commit URL",
-                  "value": "[View Commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }})",
-                  "inline": false
-                },
-                {
-                  "name": "Repository",
-                  "value": "${{ github.repository }}",
-                  "inline": true
-                },
-                {
-                  "name": "Branch",
-                  "value": "${{ github.ref }}",
-                  "inline": true
-                },
-                {
-                  "name": "Files Changed",
-                  "value": "${{ github.event.head_commit.modified }}",
-                  "inline": false
-                }
-              ],
-              "footer": {
-                "text": "GitHub Actions | ${{ github.actor }}",
-                "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}"
-              },
-              "timestamp": "${{ github.event.head_commit.timestamp }}",
-              "author": {
-                "name": "${{ github.actor }}",
-                "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}"
-              },
-              "thumbnail": {
-                "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-              }
-            }]
-          }' \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
+          # Build the JSON payload with proper variable interpolation
+          json=$(cat <<EOF
+{
+  "embeds": [{
+    "title": "New Commit in Repository",
+    "description": "A new commit has been pushed to the **main** branch.",
+    "color": 3447003,
+    "fields": [
+      {
+        "name": "Commit SHA",
+        "value": "${{ github.sha }}",
+        "inline": true
+      },
+      {
+        "name": "Commit Message",
+        "value": "${{ github.event.head_commit.message }}",
+        "inline": false
+      },
+      {
+        "name": "Committer",
+        "value": "${{ github.actor }}",
+        "inline": true
+      },
+      {
+        "name": "Commit URL",
+        "value": "[View Commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }})",
+        "inline": false
+      },
+      {
+        "name": "Repository",
+        "value": "${{ github.repository }}",
+        "inline": true
+      },
+      {
+        "name": "Branch",
+        "value": "${{ github.ref }}",
+        "inline": true
+      },
+      {
+        "name": "Files Changed",
+        "value": "${{ github.event.head_commit.modified }}",
+        "inline": false
+      }
+    ],
+    "footer": {
+      "text": "GitHub Actions | ${{ github.actor }}",
+      "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}"
+    },
+    "timestamp": "${{ github.event.head_commit.timestamp }}",
+    "author": {
+      "name": "${{ github.actor }}",
+      "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}"
+    },
+    "thumbnail": {
+      "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+    }
+  }]
+}
+EOF
+)
+          echo "$json"  # (Optional) Print the payload for debugging.
+          curl -X POST -H "Content-Type: application/json" -d "$json" ${{ secrets.DISCORD_WEBHOOK_URL }}
