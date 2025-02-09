@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Fetch committer avatar URL
+        id: fetch_avatar
+        run: |
+          AVATAR_URL=$(curl -s https://api.github.com/users/$GITHUB_ACTOR | jq -r .avatar_url)
+          echo "AVATAR_URL=$AVATAR_URL" >> $GITHUB_ENV
+
       - name: Send commit info to Discord
         run: |
           curl -X POST -H "Content-Type: application/json" \
@@ -62,17 +68,13 @@ jobs:
               "timestamp": "'"$(date --utc +%Y-%m-%dT%H:%M:%SZ)"'",
               "author": {
                 "name": "'"$GITHUB_ACTOR"'",
-                "icon_url": "https://avatars.githubusercontent.com/$GITHUB_ACTOR"
+                "icon_url": "'"${{ env.AVATAR_URL }}"'"
               },
               "thumbnail": {
                 "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
               },
               "image": {
                 "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-              },
-              "author": {
-                "name": "'"$GITHUB_ACTOR"'",
-                "icon_url": "https://avatars.githubusercontent.com/$GITHUB_ACTOR"
               }
             }]
           }')" \
