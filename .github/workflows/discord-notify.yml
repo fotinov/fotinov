@@ -2,76 +2,82 @@ name: Notify Discord on Push
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   notify:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Fetch committer avatar URL
+        id: fetch_avatar
+        run: |
+          # Fetch the avatar URL from GitHub's API using the GITHUB_ACTOR variable.
+          AVATAR_URL=$(curl -s https://api.github.com/users/$GITHUB_ACTOR | jq -r .avatar_url)
+          echo "AVATAR_URL=$AVATAR_URL" >> $GITHUB_ENV
+
       - name: Send commit info to Discord
         run: |
-          curl -X POST -H "Content-Type: application/json" \
-          --data '{
-            "embeds": [{
-              "title": "New Commit in Repository",
-              "description": "A new commit has been pushed to the **main** branch.",
-              "color": 3447003,  # Blue color (you can change the color code)
-              "fields": [
-                {
-                  "name": "Commit SHA",
-                  "value": "'$GITHUB_SHA'",
-                  "inline": true
-                },
-                {
-                  "name": "Commit Message",
-                  "value": "'$GITHUB_EVENT_HEAD_COMMIT_MESSAGE'",
-                  "inline": false
-                },
-                {
-                  "name": "Committer",
-                  "value": "'$GITHUB_ACTOR'",
-                  "inline": true
-                },
-                {
-                  "name": "Commit URL",
-                  "value": "[View Commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }})",
-                  "inline": false
-                },
-                {
-                  "name": "Repository",
-                  "value": "${{ github.repository }}",
-                  "inline": true
-                },
-                {
-                  "name": "Branch",
-                  "value": "${{ github.ref }}",
-                  "inline": true
-                },
-                {
-                  "name": "Committer Avatar",
-                  "value": "[Avatar](${GITHUB_ACTOR_AVATAR_URL})",
-                  "inline": false
-                },
-                {
-                  "name": "Files Changed",
-                  "value": "${{ github.event.head_commit.modified }}",
-                  "inline": false
-                }
-              ],
-              "footer": {
-                "text": "GitHub Actions | ${GITHUB_ACTOR}",
-                "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-              },
-              "timestamp": "'$(date --utc +%Y-%m-%dT%H:%M:%SZ)'",
-              "author": {
-                "name": "'$GITHUB_ACTOR'",
-                "icon_url": "https://avatars.githubusercontent.com/$GITHUB_ACTOR"
-              },
-              "thumbnail": {
-                "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-              },
-            }]
-          }' \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
+          # Build the JSON payload using a heredoc.
+          # IMPORTANT: The EOF marker must have no indentation.
+          json=$(cat <<EOF
+{
+  "embeds": [{
+    "title": "New Commit in Repository",
+    "description": "A new commit has been pushed to the **main** branch.",
+    "color": 3447003,
+    "fields": [
+      {
+        "name": "Commit SHA",
+        "value": "$GITHUB_SHA",
+        "inline": true
+      },
+      {
+        "name": "Commit Message",
+        "value": "${{ github.event.head_commit.message }}",
+        "inline": false
+      },
+      {
+        "name": "Committer",
+        "value": "$GITHUB_ACTOR",
+        "inline": true
+      },
+      {
+        "name": "Commit URL",
+        "value": "[View Commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }})",
+        "inline": false
+      },
+      {
+        "name": "Repository",
+        "value": "${{ github.repository }}",
+        "inline": true
+      },
+      {
+        "name": "Branch",
+        "value": "${{ github.ref }}",
+        "inline": true
+      },
+      {
+        "name": "Files Changed",
+        "value": "${{ github.event.head_commit.modified }}",
+        "inline": false
+      }
+    ],
+    "footer": {
+      "text": "GitHub Actions | $GITHUB_ACTOR",
+      "icon_url": "https://avatars.githubusercontent.com/$GITHUB_ACTOR"
+    },
+    "timestamp": "${{ github.event.head_commit.timestamp }}",
+    "author": {
+      "name": "$GITHUB_ACTOR",
+      "icon_url": "${{ env.AVATAR_URL }}"
+    },
+    "thumbnail": {
+      "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+    }
+  }]
+}
+EOF
+          )
+          echo "$json"  # (Optional) Prints the JSON payload to the logs for debugging.
+          curl -X POST -H "Content-Type: application/json" -d "$json" "${{ secrets.DISCORD_WEBHOOK_URL }}"
