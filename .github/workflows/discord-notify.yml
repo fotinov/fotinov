@@ -10,34 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Fetch committer avatar URL
-        id: fetch_avatar
-        run: |
-          AVATAR_URL=$(curl -s https://api.github.com/users/$GITHUB_ACTOR | jq -r .avatar_url)
-          echo "AVATAR_URL=$AVATAR_URL" >> $GITHUB_ENV
-
       - name: Send commit info to Discord
         run: |
           curl -X POST -H "Content-Type: application/json" \
-          --data "$(echo '{
+          --data '{
             "embeds": [{
               "title": "New Commit in Repository",
               "description": "A new commit has been pushed to the **main** branch.",
-              "color": 3447003,
+              "color": 3447003,  # Blue color (you can change the color code)
               "fields": [
                 {
                   "name": "Commit SHA",
-                  "value": "'"$GITHUB_SHA"'",
+                  "value": "'$GITHUB_SHA'",
                   "inline": true
                 },
                 {
                   "name": "Commit Message",
-                  "value": "'"${{ github.event.head_commit.message }}"'",
+                  "value": "'$GITHUB_EVENT_HEAD_COMMIT_MESSAGE'",
                   "inline": false
                 },
                 {
                   "name": "Committer",
-                  "value": "'"$GITHUB_ACTOR"'",
+                  "value": "'$GITHUB_ACTOR'",
                   "inline": true
                 },
                 {
@@ -56,23 +50,31 @@ jobs:
                   "inline": true
                 },
                 {
+                  "name": "Committer Avatar",
+                  "value": "[Avatar](${GITHUB_ACTOR_AVATAR_URL})",
+                  "inline": false
+                },
+                {
                   "name": "Files Changed",
-                  "value": "'"${{ github.event.head_commit.modified }}"'",
+                  "value": "${{ github.event.head_commit.modified }}",
                   "inline": false
                 }
               ],
               "footer": {
-                "text": "GitHub Actions | '${{ github.actor }}'",
+                "text": "GitHub Actions | ${GITHUB_ACTOR}",
                 "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
               },
-              "timestamp": "'"$(date --utc +%Y-%m-%dT%H:%M:%SZ)"'",
+              "timestamp": "'$(date --utc +%Y-%m-%dT%H:%M:%SZ)'",
               "author": {
-                "name": "'"$GITHUB_ACTOR"'",
-                "icon_url": "'"${{ env.AVATAR_URL }}"'"
+                "name": "'$GITHUB_ACTOR'",
+                "icon_url": "https://avatars.githubusercontent.com/$GITHUB_ACTOR"
               },
               "thumbnail": {
                 "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
               },
+              "image": {
+                "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+              }
             }]
-          }')" \
+          }' \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
