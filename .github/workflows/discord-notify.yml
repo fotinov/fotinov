@@ -76,6 +76,3 @@ jobs:
             }]
           }')" \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
-
-
-that was the last good syntax, was it?
