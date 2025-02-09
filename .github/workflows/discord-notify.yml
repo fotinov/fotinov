@@ -27,17 +27,17 @@ jobs:
               "fields": [
                 {
                   "name": "Commit SHA",
-                  "value": "'"$GITHUB_SHA"'",
+                  "value": "${{ github.sha }}",
                   "inline": true
                 },
                 {
                   "name": "Commit Message",
-                  "value": "'"${{ github.event.head_commit.message }}"'",
+                  "value": "${{ github.event.head_commit.message }}",
                   "inline": false
                 },
                 {
                   "name": "Committer",
-                  "value": "'"$GITHUB_ACTOR"'",
+                  "value": "${{ github.actor }}",
                   "inline": true
                 },
                 {
@@ -57,17 +57,17 @@ jobs:
                 },
                 {
                   "name": "Files Changed",
-                  "value": "'"${{ github.event.head_commit.modified }}"'",
+                  "value": "${{ github.event.head_commit.modified }}",
                   "inline": false
                 }
               ],
               "footer": {
-                "text": "GitHub Actions | $GITHUB_ACTOR",
-                "icon_url": "https://avatars.githubusercontent.com/$GITHUB_ACTOR"
+                "text": "GitHub Actions | ${{ github.actor }}",
+                "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}"
               },
               "timestamp": "${{ github.event.head_commit.timestamp }}",
               "author": {
-                "name": "$GITHUB_ACTOR",
+                "name": "${{ github.actor }}",
                 "icon_url": "${{ env.AVATAR_URL }}"
               },
               "thumbnail": {
