@@ -21,17 +21,17 @@ jobs:
               "fields": [
                 {
                   "name": "Commit SHA",
-                  "value": "'$GITHUB_SHA'",
+                  "value": "${{ github.sha }}",
                   "inline": true
                 },
                 {
                   "name": "Commit Message",
-                  "value": "'$GITHUB_EVENT_HEAD_COMMIT_MESSAGE'",
+                  "value": "${{ github.event.head_commit.message }}",
                   "inline": false
                 },
                 {
                   "name": "Committer",
-                  "value": "'$GITHUB_ACTOR'",
+                  "value": "${{ github.actor }}",
                   "inline": true
                 },
                 {
@@ -56,13 +56,13 @@ jobs:
                 }
               ],
               "footer": {
-                "text": "GitHub Actions | ${GITHUB_ACTOR}",
-                "icon_url": "https://avatars.githubusercontent.com/$GITHUB_ACTOR"  # Avatar added next to footer text
+                "text": "GitHub Actions | ${{ github.actor }}",
+                "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}"
               },
-              "timestamp": "'$(date --utc +%Y-%m-%dT%H:%M:%SZ)'",
+              "timestamp": "${{ github.event.head_commit.timestamp }}",
               "author": {
-                "name": "'$GITHUB_ACTOR'",
-                "icon_url": "https://avatars.githubusercontent.com/$GITHUB_ACTOR"
+                "name": "${{ github.actor }}",
+                "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}"
               },
               "thumbnail": {
                 "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
