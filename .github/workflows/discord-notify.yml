@@ -76,7 +76,6 @@ jobs:
     }
   }]
 }
-EOF
           )
           echo "$json"  # (Optional) Prints the JSON payload to the logs for debugging.
           curl -X POST -H "Content-Type: application/json" -d "$json" "${{ secrets.DISCORD_WEBHOOK_URL }}"
