@@ -61,9 +61,7 @@ jobs:
                   "inline": false
                 }
               ],
-              "footer": {
-                "text": "GitHub Actions | '${{ github.actor }}'",
-                "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+              
               },
               "timestamp": "'"$(date --utc +%Y-%m-%dT%H:%M:%SZ)"'",
               "author": {
