@@ -69,6 +69,10 @@ jobs:
               },
               "image": {
                 "url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+              },
+              "author": {
+                "name": "'"$GITHUB_ACTOR"'",
+                "icon_url": "https://avatars.githubusercontent.com/$GITHUB_ACTOR"
               }
             }]
           }')" \
