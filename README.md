@@ -6,7 +6,7 @@
     
 <div align="center">  
  
-![GitHub Profile Summary](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=fotinov&theme=radical)
+![GitHub Profile Summary](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=fotinov&theme=outrun)
 
 
 🌱 **Python Learner** **|** ***Cyber Security Enthusiast***
@@ -33,7 +33,7 @@
 
 | &nbsp; | &nbsp; |
 |--------|--------|
-| ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=fotinov&theme=radical&hide_border=true&date_format=M%20j%5B%2C%20Y%5D) | ![Profile Stats](https://github-readme-stats.vercel.app/api?username=fotinov&show_icons=true&theme=radical&hide_border=true&count_private=true) |
+| ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=fotinov&theme=outrun&hide_border=true&date_format=M%20j%5B%2C%20Y%5D) | ![Profile Stats](https://github-readme-stats.vercel.app/api?username=fotinov&show_icons=true&theme=outrun&hide_border=true&count_private=true) |
 
 
 
@@ -46,9 +46,9 @@
  
 
   
- <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Sanguin+IT&weight=100&size=15&letterSpacing=wide&pause=1000&color=FF007C&center=true&vCenter=true&width=450&lines=Learn.+Code.+Repeat" alt="Typing SVG" /></a>
+ <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Sanguin+IT&weight=100&size=15&letterSpacing=wide&pause=1000&color=FFFF00&center=true&vCenter=true&width=450&lines=Learn.+Code.+Repeat" alt="Typing SVG" /></a>
  
-  ![Dev Quote](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
+  ![Dev Quote](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=algolia)
 
 </div>
 
