@@ -1,5 +1,4 @@
-
-
+[![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/stanislav-fotinov/)
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=flat&logo=Gmail&logoColor=white)](mailto:stanislavfotinov@gmail.com)
   [![X Badge](https://img.shields.io/badge/-X-000000?style=flat&logo=X&logoColor=white)](https://x.com/stfotinov)
     ![Repository Views](https://komarev.com/ghpvc/?username=your-username&repo=your-repository&color=blue)
